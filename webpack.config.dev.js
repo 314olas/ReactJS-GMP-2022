@@ -9,47 +9,50 @@ module.exports = {
     mode: process.env.NODE_ENV,
     entry: './src/index.tsx',
     devtool: 'inline-source-map',
+    stats: {
+        errorDetails: true
+    },
     devServer: {
         static: {
-            directory: path.join(__dirname, '/dist'),
+            directory: path.join(__dirname, '/dist')
         },
         historyApiFallback: true,
         open: true,
         hot: true,
-        port: process.env.PORT,
+        port: process.env.PORT
     },
     output: {
         path: path.join(__dirname, '/dist'),
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
-        clean: true,
+        clean: true
     },
     optimization: {
         splitChunks: {
-            chunks: 'all',
-        },
+            chunks: 'all'
+        }
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/index.html'
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['dist'],
+            cleanAfterEveryBuildPatterns: ['dist']
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin()
     ],
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: ['babel-loader']
             },
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 test: /\.(s[ac]|c)ss$/i,
@@ -58,43 +61,43 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: true,
-                        },
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: ['autoprefixer'],
-                            },
-                        },
+                                plugins: ['autoprefixer']
+                            }
+                        }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: true,
-                        },
-                    },
-                ],
+                            sourceMap: true
+                        }
+                    }
+                ]
             },
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'images/[name][ext]',
-                },
+                    filename: 'images/[name][ext]'
+                }
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                test: /\.(woff(2)?|eot|ttf|otf)$/,
                 type: 'asset/inline',
                 generator: {
-                    filename: 'fonts/[name][ext]',
-                },
-            },
-        ],
+                    filename: 'fonts/[name][ext]'
+                }
+            }
+        ]
     },
     resolve: {
         modules: [path.resolve(__dirname, './src'), './node_modules'],
-        extensions: ['.tsx', '.ts', '.js'],
-    },
+        extensions: ['.tsx', '.ts', '.js', 'scss']
+    }
 }
