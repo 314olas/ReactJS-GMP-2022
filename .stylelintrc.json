@@ -20,6 +20,11 @@
 		"color-function-notation": "legacy",
 		"function-parentheses-space-inside": "never",
 		"import-notation": "string",
-		"selector-class-pattern": null
+		"selector-class-pattern": null,
+		"declaration-colon-newline-after": null,
+		"declaration-colon-space-after": null,
+		"value-list-comma-newline-after": null,
+		"no-descending-specificity": null,
+		"length-zero-no-unit": null
     }
 }
