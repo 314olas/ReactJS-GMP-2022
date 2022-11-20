@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
+import { useAppContext } from '../context/app'
 import DropDown from '../Dropdown'
 
-import { GlobalContext } from '../context/app'
-
 export const Sort = () => {
-	const { sortedArray } = useContext(GlobalContext)
+	const { sortedArray } = useAppContext()
 
 	return (
 		<div className='filter__sort'>

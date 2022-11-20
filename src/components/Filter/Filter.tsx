@@ -1,19 +1,18 @@
 import React from 'react'
-import { IDropdownData } from '../../types'
 import Categories from './Categories'
 import { Sort } from './Sort'
 
 import '../../styles/components/filterSection.scss'
+import { useAppContext } from '../context/app'
 
-export interface IFilterProps {
-	categories: IDropdownData[]
-}
+export interface IFilterProps {}
 
-export default function Filter({ categories }: IFilterProps) {
+export default function Filter(props: IFilterProps) {
+	const { categoryList } = useAppContext()
 	return (
 		<section className='filter'>
 			<Categories
-				list={categories}
+				list={categoryList}
 				activeCategory={'all'}
 			/>
 			<Sort />

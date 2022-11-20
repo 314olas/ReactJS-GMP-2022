@@ -1,12 +1,12 @@
 import React, { useState, useCallback, lazy, Suspense, useContext } from 'react'
 import { IMovie, IDropdownData, MovieActionEnum } from '../../types'
 
-import img from '../../assets/no-image.png'
 import DropDown from '../Dropdown'
 import GridTamplate from '../GridTamplate'
 import Input from '../Input'
 import Loading from '../Loading'
-import { GlobalContext } from '../context/app'
+import { useAppContext } from '../context/app'
+import MovieCardImg from './MovieImage'
 
 const Modal = lazy(() => import('../Modal'))
 
@@ -16,7 +16,7 @@ export interface IMovieProps {
 }
 
 export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
-	const { genresArray } = useContext(GlobalContext)
+	const { genresArray, setAppState } = useAppContext()
 	const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false)
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false)
 
@@ -29,13 +29,20 @@ export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
 		[isOpenEditModal, isOpenDeleteModal]
 	)
 
+	const selectMovie = (movie: IMovie) => {
+		setAppState((prev) => ({ ...prev, selectedMovie: movie }))
+	}
+
 	return (
 		<>
 			<article className='movie-card'>
 				<div className='image-wrapper'>
-					<button type='button'>
-						<img
-							src={movie.poster_path || img}
+					<button
+						type='button'
+						onClick={() => selectMovie(movie)}
+					>
+						<MovieCardImg
+							imgUrl={movie.poster_path}
 							alt={movie.title}
 						/>
 					</button>
