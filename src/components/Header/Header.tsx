@@ -6,12 +6,12 @@ import HeaderTop from './HeaderTop'
 export interface IHeaderProps {}
 
 export default function Header(props: IHeaderProps) {
-    return (
-        <header className='header'>
-            <>
-                <HeaderTop />
-                <HeaderForm />
-            </>
-        </header>
-    )
+	return (
+		<header className='header'>
+			<>
+				<HeaderTop />
+				<HeaderForm />
+			</>
+		</header>
+	)
 }
