@@ -38,8 +38,12 @@
     }
 }
 
+.header,
 .content {
     background-color: $black;
+}
+
+.content {
     padding: 0 $content-spacing;
 }
 
@@ -80,4 +84,8 @@
     &::placeholder {
         color: rgba($white, 0.3);
     }
+}
+
+.position-relative {
+    position: relative;
 }

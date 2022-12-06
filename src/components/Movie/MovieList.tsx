@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { GlobalContext } from '../context/app'
+import { useAppContext } from '../context/app'
 import Movie from './Movie'
 
 export interface IMovieListProps {}
 
 export default function MovieList(props: IMovieListProps) {
-	const { movies, moviesActions } = useContext(GlobalContext)
+	const { movies, moviesActions } = useAppContext()
 
 	return (
 		<section className='container container--3 movie-card-container'>
