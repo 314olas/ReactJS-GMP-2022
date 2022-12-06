@@ -3,16 +3,23 @@ import { IDropdownData } from '../../types'
 
 export interface ICategoriesProps {
 	list: IDropdownData[]
-	activeCategory: string
+	activeCategory: IDropdownData,
+	selectCategory: (category: IDropdownData) => void
 }
 
-export default function Categories({ list, activeCategory }: ICategoriesProps) {
+export default function Categories({ list, activeCategory, selectCategory }: ICategoriesProps) {
+
+	const clickHandler = (e: React.MouseEvent<HTMLAnchorElement>, category: IDropdownData) => {
+		e.preventDefault()
+		selectCategory(category)
+	}
+
 	return (
 		<ul className='filter__category-list'>
 			{list.map((category) => {
 				return (
 					<li
-						className={['item', category.value === activeCategory ? 'active' : ''].join(
+						className={['item', category.value === activeCategory.value ? 'active' : ''].join(
 							' '
 						)}
 						key={category.name}
@@ -20,6 +27,7 @@ export default function Categories({ list, activeCategory }: ICategoriesProps) {
 						<a
 							href='/'
 							className='link'
+							onClick={(e) => clickHandler(e, category)}
 						>
 							{category.name}
 						</a>

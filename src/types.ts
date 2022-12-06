@@ -13,6 +13,13 @@ export interface IMovie {
 	runtime: number
 }
 
+export interface IMoviesResponse {
+	totalAmount: number;
+    data: IMovie[];
+    offset: number;
+    limit: number;
+}
+
 export enum MovieActionEnum {
 	Delete = 'Delete',
 	Edit = 'Edit'
@@ -22,3 +29,7 @@ export interface IDropdownData {
 	name: string
 	value: string
 }
+
+export type IObjectKey = {
+    [key: string]: any;
+};

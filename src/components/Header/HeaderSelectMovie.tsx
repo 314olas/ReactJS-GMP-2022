@@ -4,10 +4,11 @@ import { useAppContext } from '../context/app'
 import MovieDescription from '../Movie/MovieDescription'
 
 export interface IHeaderSelectMovieProps {
-	selectedMovie: IMovie
+	selectedMovie: IMovie,
+	unselectMovie: () => void
 }
 
-export default function HeaderSelectMovie({ selectedMovie }: IHeaderSelectMovieProps) {
+export default function HeaderSelectMovie({ selectedMovie, unselectMovie }: IHeaderSelectMovieProps) {
 	const { setAppState } = useAppContext()
 
 	return (
@@ -25,7 +26,7 @@ export default function HeaderSelectMovie({ selectedMovie }: IHeaderSelectMovieP
 					type='button'
 					className='button header__search-btn'
 					title='unselect movie'
-					onClick={() => setAppState((prev) => ({ ...prev, selectedMovie: null }))}
+					onClick={unselectMovie}
 				>
 					<svg
 						width='29'

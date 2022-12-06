@@ -1,47 +1,47 @@
-import React, { useState, useCallback, lazy, Suspense, useContext } from 'react'
+import React, { useState, useCallback, lazy, Suspense } from 'react'
 import { IMovie, IDropdownData, MovieActionEnum } from '../../types'
 
 import DropDown from '../Dropdown'
 import GridTamplate from '../GridTamplate'
 import Input from '../Input'
 import Loading from '../Loading'
-import { useAppContext } from '../context/app'
-import MovieCardImg from './MovieImage'
+import MovieImage from './MovieImage'
 
 const Modal = lazy(() => import('../Modal'))
 
 export interface IMovieProps {
 	movie: IMovie
-	moviesActions: IDropdownData[]
+	moviesActions: IDropdownData[],
+	genresArray: IDropdownData[],
+	selectedGenres: IDropdownData
+	selectMovieHandler: (movie: IMovie) => void
 }
 
-export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
-	const { genresArray, setAppState } = useAppContext()
+export default function Movie({ movie, moviesActions = [], genresArray, selectedGenres, selectMovieHandler }: IMovieProps) {
+	// const { genresArray } = useContext(GlobalContext)
 	const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false)
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false)
 
+	const clickHandler = (e: React.MouseEvent<HTMLButtonElement>, movie: IMovie) => {
+		e.preventDefault();
+		selectMovieHandler(movie)
+	}
+
 	const openModalHandler = useCallback(
-		(value: String[]) => {
-			value[0] === MovieActionEnum.Edit
+		(value: IDropdownData[]) => {
+			value[0].value === MovieActionEnum.Edit
 				? setIsOpenEditModal(true)
 				: setIsOpenDeleteModal(true)
 		},
 		[isOpenEditModal, isOpenDeleteModal]
 	)
 
-	const selectMovie = (movie: IMovie) => {
-		setAppState((prev) => ({ ...prev, selectedMovie: movie }))
-	}
-
 	return (
 		<>
 			<article className='movie-card'>
 				<div className='image-wrapper'>
-					<button
-						type='button'
-						onClick={() => selectMovie(movie)}
-					>
-						<MovieCardImg
+					<button type='button' onClick={(e) => clickHandler(e, movie)}>
+						<MovieImage
 							imgUrl={movie.poster_path}
 							alt={movie.title}
 						/>
@@ -106,10 +106,10 @@ export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
 								<span className='input-label'>genre</span>
 								<DropDown
 									items={genresArray}
-									defaultValue={[genresArray[0]]}
+									defaultValue={[selectedGenres]}
 									multiply={true}
 									hideValuesContent={false}
-									onChangeHandler={function (value: String[]): void {
+									onChangeHandler={function (value: IDropdownData[]): void {
 										console.log(value)
 									}}
 								/>
