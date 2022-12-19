@@ -1,23 +1,52 @@
-import React, { useContext, useState } from 'react'
-import { useAppContext } from '../context/app'
+import React from 'react'
 import Movie from './Movie'
+import Loading from '../Loading';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useGetMovieQuery } from '../../store/services/movie';
+import { selectMovie } from '../../store/slices/movieSlice';
+import { IMovie } from '../../types';
 
-export interface IMovieListProps {}
+export interface IMovieListProps { }
 
 export default function MovieList(props: IMovieListProps) {
-	const { movies, moviesActions } = useAppContext()
+	const { moviesActions, movieParamsQuery, genresArray, selectedGenres } = useAppSelector(state => state.movie)
+	const { data, isFetching, isError } = useGetMovieQuery(
+		{
+			...movieParamsQuery,
+		}
+	)
+	const dispatch = useAppDispatch()
+
+	const selectMovieHandler = (movie: IMovie) => {
+		dispatch(selectMovie(movie))
+		window.scroll({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}
 
 	return (
-		<section className='container container--3 movie-card-container'>
-			{movies.map((movie) => {
-				return (
-					<Movie
-						key={movie.id.toString()}
-						movie={movie}
-						moviesActions={moviesActions}
-					/>
-				)
-			})}
-		</section>
+		<>
+			{
+				isFetching && !isError ?
+					<Loading /> :
+
+					<section className='container container--3 movie-card-container'>
+						{data?.map((movie) => {
+							return (
+								<Movie
+									key={movie.id.toString()}
+									movie={movie}
+									moviesActions={moviesActions}
+									selectMovieHandler={selectMovieHandler}
+									genresArray={genresArray}
+									selectedGenres={selectedGenres}
+								/>
+							)
+						})}
+					</section>
+
+			}
+		</>
 	)
 }

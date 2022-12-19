@@ -51,6 +51,21 @@
             right: 0;
             left: auto;
         }
+
+		&-button {
+			@include text-l;
+
+			background-color: transparent;
+            color: $white;
+			display: block;
+			padding: 9px 30px 9px 23px;
+			width: 100%;
+			border: 0;
+
+			&:hover {
+				background-color: $red;
+			}
+		}
     }
 
     li {
@@ -62,17 +77,6 @@
 
         &:last-child {
             padding-bottom: 6px;
-        }
-    }
-
-    &__item {
-        @include text-l;
-
-        display: block;
-        padding: 9px 30px 9px 23px;
-
-        &:hover {
-            background-color: $red;
         }
     }
 

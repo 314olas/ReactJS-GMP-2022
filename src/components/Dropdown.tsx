@@ -13,7 +13,7 @@ export interface IDropDownProps {
 	name?: string
 	multiply?: boolean
 	hideValuesContent?: boolean
-	onChangeHandler: (value: String[]) => void
+	onChangeHandler: (value: IDropdownData[]) => void
 }
 
 const DropDown: React.FC<IDropDownProps> = ({
@@ -29,13 +29,13 @@ const DropDown: React.FC<IDropDownProps> = ({
 	onChangeHandler
 }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
-	const [values, setValues] = useState<String[]>(
-		defaultValue.length ? defaultValue.map((value) => value.name) : []
+	const [values, setValues] = useState<IDropdownData[]>(
+		defaultValue.length ? defaultValue : []
 	)
 
 	const clickHandler = (
-		e: React.MouseEvent<HTMLAnchorElement> | React.ChangeEvent<HTMLInputElement>,
-		itemName: string
+		e: React.MouseEvent<HTMLButtonElement> | React.ChangeEvent<HTMLInputElement>,
+		item: IDropdownData
 	) => {
 		e.stopPropagation()
 
@@ -44,17 +44,18 @@ const DropDown: React.FC<IDropDownProps> = ({
 		}
 
 		if (multiply) {
-			const isExistValue = values.includes(itemName)
-			const newValues: String[] = isExistValue
-				? values.filter((value) => value !== itemName)
-				: [...values, itemName]
+			const isExistValue = values?.filter((value) => value.value === item.value)
+			const newValues: IDropdownData[] = isExistValue.length
+				? values.filter((value) => value.value !== item.value)
+				: [...values, item]
 
 			setValues(() => {
 				onChangeHandler(newValues)
 				return newValues
 			})
 		} else {
-			onChangeHandler([itemName])
+			setValues(() => [item])
+			onChangeHandler([item])
 			toggleIsOpen(false)
 		}
 	}
@@ -68,8 +69,9 @@ const DropDown: React.FC<IDropDownProps> = ({
 	}
 
 	const generateChoosenValues = useMemo(() => {
+
 		if (values.length) {
-			return <span className='values-content'>{values.map((value) => value + ' ')}</span>
+			return <span className='values-content'>{values.map((value) => value.name + ' ')}</span>
 		}
 
 		return placeholder
@@ -122,8 +124,8 @@ const DropDown: React.FC<IDropDownProps> = ({
 										<input
 											type='checkbox'
 											id={item.name}
-											onChange={(e) => clickHandler(e, item.name)}
-											checked={values.includes(item.value)}
+											onChange={(e) => clickHandler(e, item)}
+											checked={!!values.find(value => value.value === item.value)}
 										/>
 										<label htmlFor={item.name}>{item.name}</label>
 									</span>
@@ -135,13 +137,14 @@ const DropDown: React.FC<IDropDownProps> = ({
 						items.map((item: IDropdownData) => {
 							return (
 								<li key={item.name}>
-									<a
-										href='/'
-										className='dropdown__item'
-										onClick={(e) => clickHandler(e, item.name)}
+									<button
+										type="button"
+										className='dropdown__menu-button'
+										onClick={(e) => clickHandler(e, item)}
+										disabled={!!values.find(value => value.value === item.value)}
 									>
 										{item.name}
-									</a>
+									</button>
 								</li>
 							)
 						})}
