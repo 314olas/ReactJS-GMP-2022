@@ -2,7 +2,7 @@ import React from 'react'
 import Categories from './Categories'
 import Sort from './Sort'
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import { selectGenre, selectMovieParamsQuery, selectSortValue } from '../../store/slices/movieSlice';
+import { selectGenre, selectSortValue } from '../../store/slices/movieSlice';
 
 import '../../styles/components/filterSection.scss'
 import { IDropdownData } from '../../types';
@@ -19,6 +19,9 @@ export default function Filter(props: IFilterProps) {
 	}
 
 	const selectSort = (value: IDropdownData) => {
+		if (selectedSort.name === value.name) {
+			return
+		}
 		dispatch(selectSortValue(value))
 	}
 

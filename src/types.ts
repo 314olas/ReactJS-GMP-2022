@@ -22,7 +22,8 @@ export interface IMoviesResponse {
 
 export enum MovieActionEnum {
 	Delete = 'Delete',
-	Edit = 'Edit'
+	Edit = 'Edit',
+	Add = 'Add',
 }
 
 export interface IDropdownData {
@@ -33,3 +34,40 @@ export interface IDropdownData {
 export type IObjectKey = {
     [key: string]: any;
 };
+
+export interface ICommonFormField {
+    typeField?: string,
+    value: string | number | IDropdownData[],
+    placeholder?: string,
+    label?: string,
+    name?: string,
+    step?: number,
+    multiply?: boolean,
+    data?: IDropdownData[] | null
+}
+
+export interface IAddMovieForm {
+    title: ICommonFormField,
+    tagline: ICommonFormField,
+    budget: ICommonFormField,
+    genres: ICommonFormField,
+    release_date: ICommonFormField,
+    vote_count: ICommonFormField,
+    poster_path: ICommonFormField,
+    overview: ICommonFormField,
+    vote_average: ICommonFormField,
+    runtime: ICommonFormField,
+    revenue: ICommonFormField;
+};
+
+export interface IUpdateFormField {
+    name: keyof IAddMovieForm,
+    value: string | number | IDropdownData[],
+}
+
+export interface IErrorResponse {
+    error: {
+        data?: any,
+        message?: any
+    }
+}
