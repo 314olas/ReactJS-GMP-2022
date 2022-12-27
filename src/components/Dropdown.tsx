@@ -92,7 +92,7 @@ const DropDown: React.FC<IDropDownProps> = ({
 						aria-expanded={isOpen}
 						onClick={() => toggleIsOpen(!isOpen)}
 					>
-						{!hideValuesContent && generateChoosenValues}
+						{!hideValuesContent ? generateChoosenValues : ''}
 						{children || (
 							<svg
 								className='dropdown__arrow'
@@ -141,7 +141,6 @@ const DropDown: React.FC<IDropDownProps> = ({
 										type="button"
 										className='dropdown__menu-button'
 										onClick={(e) => clickHandler(e, item)}
-										disabled={!!values.find(value => value.value === item.value)}
 									>
 										{item.name}
 									</button>

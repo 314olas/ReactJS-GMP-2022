@@ -36,6 +36,8 @@
     }
 
     &__content {
+		max-height: 100%;
+		overflow: auto;
         position: relative;
         padding: 60px;
         background-color: $black;

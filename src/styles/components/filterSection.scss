@@ -19,7 +19,7 @@
 
     &__category-list {
         display: flex;
-        margin: 0 -15px;
+        margin: 0 -7px;
 
         .link {
             position: relative;
@@ -43,7 +43,7 @@
         .item {
             position: relative;
             display: block;
-            padding: 0 15px;
+            padding: 0 7px;
 
             &.active {
                 .link {

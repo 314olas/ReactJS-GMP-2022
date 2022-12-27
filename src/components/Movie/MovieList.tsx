@@ -9,12 +9,9 @@ import { IMovie } from '../../types';
 export interface IMovieListProps { }
 
 export default function MovieList(props: IMovieListProps) {
-	const { moviesActions, movieParamsQuery, genresArray, selectedGenres } = useAppSelector(state => state.movie)
-	const { data, isFetching, isError } = useGetMovieQuery(
-		{
-			...movieParamsQuery,
-		}
-	)
+	const { moviesActions, movieParamsQuery } = useAppSelector(state => state.movie)
+	const { data, isFetching, isError } = useGetMovieQuery({...movieParamsQuery})
+
 	const dispatch = useAppDispatch()
 
 	const selectMovieHandler = (movie: IMovie) => {
@@ -39,13 +36,10 @@ export default function MovieList(props: IMovieListProps) {
 									movie={movie}
 									moviesActions={moviesActions}
 									selectMovieHandler={selectMovieHandler}
-									genresArray={genresArray}
-									selectedGenres={selectedGenres}
 								/>
 							)
 						})}
 					</section>
-
 			}
 		</>
 	)
