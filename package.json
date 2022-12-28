@@ -25,11 +25,14 @@
   "homepage": "https://github.com/314olas/ReactJS-GMP-2022#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
+    "@types/react-router-dom": "^5.3.3",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router": "^6.6.1",
+    "react-router-dom": "^6.6.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

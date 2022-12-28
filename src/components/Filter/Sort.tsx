@@ -16,7 +16,7 @@ export default function Sort({ sortedArray, selectedSort, selectSortValue }: ISo
 			<span className='filter__sort-text'>Sort by</span>
 			<DropDown
 				items={sortedArray}
-				defaultValue={[selectedSort]}
+				defaultValue={[]}
 				hideValuesContent={false}
 				onChangeHandler={(value) => selectSortValue(value[0])}
 			/>

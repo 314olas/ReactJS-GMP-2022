@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IAddMovieForm, IDropdownData, IMovie, IObjectKey, IUpdateFormField, MovieActionEnum} from '../../types'
 
 const genresArray: IDropdownData[] = [
-	{ name: 'all', value: '' },
+	{ name: 'all', value: 'all' },
 	{ name: 'Documentary', value: 'documentary' },
 	{ name: 'Comedy', value: 'comedy' },
 	{ name: 'Crime', value: 'crime' },

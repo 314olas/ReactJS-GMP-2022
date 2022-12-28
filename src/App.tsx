@@ -15,16 +15,14 @@ export default function App(props: IAppProps) {
 
 	return (
 		<Provider store={store}>
-			{/* <GlobalContext.Provider value={initislState}> */}
-				<Header />
-				<main className='content'>
-				<Filter />
-					<ErrorBoundary>
-						<MovieList />
-					</ErrorBoundary>
-				</main>
-				<Footer />
-			{/* </GlobalContext.Provider> */}
+			<Header />
+			<main className='content'>
+			<Filter />
+				<ErrorBoundary>
+					<MovieList />
+				</ErrorBoundary>
+			</main>
+			<Footer />
 		</Provider>
 
 	)
