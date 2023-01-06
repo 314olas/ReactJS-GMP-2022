@@ -6,7 +6,7 @@ export interface IClickOutsideProps {
 	className?: string
 }
 
-export default function ClickOutside({ onClickOutside, children, className }: IClickOutsideProps) {
+export default function ClickOutside({ onClickOutside, children, className = 'outside' }: IClickOutsideProps) {
 	const containerRef = useRef<HTMLDivElement>()
 
 	const handleClick = (event: MouseEvent) => {

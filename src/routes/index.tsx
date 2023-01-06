@@ -13,10 +13,6 @@ export const routers = createBrowserRouter([
 		element: <App />,
 	},
 	{
-		path: '/search/:searchQuery',
-		element: <App />,
-	},
-	{
 		path: '*',
 		element: <ErrorPage />
 	}

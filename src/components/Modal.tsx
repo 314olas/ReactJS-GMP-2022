@@ -3,7 +3,7 @@ import '../styles/components/modal.scss'
 import Close from './Icons/Close'
 import PortalWrapper from './PortalWrapper'
 
-interface IModalProps {
+export interface IModalProps {
 	additionalClass?: string
 	position?: string
 	children: React.ReactElement
@@ -16,42 +16,41 @@ export default function Modal({
 	additionalClass,
 	position = 'center',
 	isOpen,
-	portalId = '',
+	portalId = 'modal',
 	toggleOpen
 }: IModalProps) {
 	const modalTemplate = (
 		<>
 			{isOpen && (
-				<>
-					<div
-						className={['modal', additionalClass, position, isOpen ? 'open' : ''].join(
-							' '
-						)}
-						aria-modal='true'
-						role='dialog'
-					>
-						<div className={['modal__dialog', position].join(' ')}>
-							<div className='modal__content'>
-								<button
-									type='button'
-									className='modal__close-btn'
-									onClick={() => toggleOpen(false)}
-									aria-label='Close'
-								>
-									<Close className='close-icon' />
-								</button>
-								{children}
-							</div>
+				<div
+					className={['modal', additionalClass, position, isOpen ? 'open' : ''].join(
+						' '
+					)}
+					aria-modal='true'
+					role='dialog'
+					aria-label='modal'
+				>
+					<div className={['modal__dialog', position].join(' ')}>
+						<div className='modal__content'>
+							<button
+								type='button'
+								className='modal__close-btn'
+								onClick={() => toggleOpen(false)}
+								aria-label='Close'
+							>
+								<Close className='close-icon' />
+							</button>
+							{children}
 						</div>
-
-						<button
-							type='button'
-							className='modal-backdrop'
-							aria-label='Close'
-							onClick={() => toggleOpen(false)}
-						></button>
 					</div>
-				</>
+
+					<button
+						type='button'
+						className='modal-backdrop'
+						aria-label='Close'
+						onClick={() => toggleOpen(false)}
+					></button>
+				</div>
 			)}
 		</>
 	)

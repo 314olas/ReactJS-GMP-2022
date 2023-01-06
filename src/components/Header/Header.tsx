@@ -1,19 +1,17 @@
 import React, { useLayoutEffect, useMemo } from 'react'
 
-import HeaderForm from './HeaderForm'
+import HeaderForm, { ISubmitFC } from './HeaderForm'
 import HeaderSelectMovie from './HeaderSelectMovie'
 import HeaderTop from './HeaderTop'
 import headerImg from '../../assets/header.png'
-import { useAppSelector } from '../../hooks/redux'
-import { useGetMovieQuery } from '../../store/services/movie'
 import { useQueryParams } from '../../hooks/queryParams'
+import { useGetMovies } from '../../hooks/useGetMovies'
 
 export interface IHeaderProps { }
 
 export default function Header(props: IHeaderProps) {
-	const { movieParamsQuery } = useAppSelector(state => state.movie)
-	const { data } = useGetMovieQuery({ ...movieParamsQuery })
-	const { getQueryParam, deleteQueryParam } = useQueryParams()
+	const { movies } = useGetMovies()
+	const { getQueryParam, deleteQueryParam, setQueryParam } = useQueryParams()
 
 	useLayoutEffect(() => {
 		window.scroll({
@@ -27,8 +25,19 @@ export default function Header(props: IHeaderProps) {
 	}
 
 	const selectedMovie = useMemo(() => {
-		return data?.find(movie => +movie.id === +getQueryParam('movieID'))
-	}, [data, getQueryParam])
+		return movies?.find(movie => +movie.id === +getQueryParam('movieID'))
+	}, [movies, getQueryParam])
+
+	const submitSearchForm: ISubmitFC = (e: React.FormEvent, value: string) => {
+		e.preventDefault()
+		if (value) {
+			setQueryParam('search', value)
+			setQueryParam('searchBy', 'title')
+		} else {
+			deleteQueryParam('search')
+			deleteQueryParam('searchBy')
+		}
+	}
 
 	return (
 		<header className='header'>
@@ -48,7 +57,7 @@ export default function Header(props: IHeaderProps) {
 					/>
 					<div className='position-relative'>
 						<HeaderTop />
-						<HeaderForm />
+						<HeaderForm onSubmitForm={submitSearchForm} />
 					</div>
 				</>
 			)}

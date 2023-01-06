@@ -8,6 +8,8 @@ import GridTamplate from '../GridTamplate'
 import MovieDropdownFormik from './MovieDropdownFormik'
 
 import '../../styles/components/input.scss'
+import { useUpdateMovie } from '../../hooks/useUpdateMovie';
+import { useCreateMovie } from '../../hooks/useCreateMovie';
 
 export interface IMovieFromProps {
 	movie: IMovie,
@@ -27,8 +29,8 @@ export default function MovieFrom({ movie, actionType, submit }: IMovieFromProps
 
 	const [formData, setFormData] = useState<IAddMovieForm>(genarateFields)
 
-	const [updateMovie] = useUpdateMovieMutation()
-	const [createMovie] = useCreateMovieMutation()
+	const {updateMovie} = useUpdateMovie()
+	const {createMovie} = useCreateMovie()
 
 	const generateFormField = (field: ICommonFormField) => {
 		if (field.typeField === 'dropdown') {

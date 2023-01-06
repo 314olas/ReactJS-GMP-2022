@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IAddMovieForm, IDropdownData, IMovie, IObjectKey, IUpdateFormField, MovieActionEnum} from '../../types'
+import { RootState } from '../index'
+import { IAddMovieForm, IDropdownData, IMovie, IObjectKey, MovieActionEnum} from '../../types'
 
 const genresArray: IDropdownData[] = [
 	{ name: 'all', value: 'all' },
@@ -32,7 +33,7 @@ const movies: IMovie[] = [
 	},
 	{
 		id: 2,
-		title: 'TITLE2',
+		title: 'Movie 2',
 		tagline: 'tagline2',
 		vote_average: 25,
 		vote_count: 45,
@@ -141,7 +142,7 @@ interface IMovieSlice {
 	formFields: IAddMovieForm,
 }
 
-const initialState: IMovieSlice = {
+export const initialState: IMovieSlice = {
 	genresArray: genresArray,
 	selectedGenres: genresArray[0],
 	sortedArray: sortedArray,
@@ -195,5 +196,7 @@ export const movieSlice = createSlice({
 })
 
 export const { selectMovie, selectGenre, selectSortValue, selectMovieActionsValue, selectMovieParamsQuery, updateFormField } = movieSlice.actions
+
+export const selectMoviesActions = (state: RootState) => state.movie.moviesActions
 
 export default movieSlice.reducer

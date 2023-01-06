@@ -1,17 +1,16 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Movie from './Movie'
 import Loading from '../Loading'
 import { useAppSelector } from '../../hooks/redux'
-import { useGetMovieQuery } from '../../store/services/movie'
-import { useQueryParams } from '../../hooks/queryParams'
+import { useGetMovies } from '../../hooks/useGetMovies'
+import { selectMoviesActions } from '../../store/slices/movieSlice'
 
 export interface IMovieListProps { }
 
 export default function MovieList(props: IMovieListProps) {
-	const { moviesActions, movieParamsQuery } = useAppSelector(state => state.movie)
-	const {getAllQueryParams} = useQueryParams();
+	const moviesActions = useAppSelector(selectMoviesActions)
 
-	const { data, isFetching, isError } = useGetMovieQuery({ ...movieParamsQuery, ...getAllQueryParams })
+	const { movies, isFetching, isError } = useGetMovies()
 
 	return (
 		<>
@@ -20,7 +19,7 @@ export default function MovieList(props: IMovieListProps) {
 					<Loading /> :
 
 					<section className='container container--3 movie-card-container'>
-						{data?.map((movie) => {
+						{movies?.map((movie) => {
 							return (
 								<Movie
 									key={movie.id.toString()}

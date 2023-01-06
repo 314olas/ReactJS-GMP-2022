@@ -39,10 +39,6 @@ const DropDown: React.FC<IDropDownProps> = ({
 	) => {
 		e.stopPropagation()
 
-		if (e.currentTarget.tagName === 'A') {
-			e.preventDefault()
-		}
-
 		if (multiply) {
 			const isExistValue = values?.filter((value) => value.value === item.value)
 			const newValues: IDropdownData[] = isExistValue.length
@@ -126,8 +122,9 @@ const DropDown: React.FC<IDropDownProps> = ({
 											id={item.name}
 											onChange={(e) => clickHandler(e, item)}
 											checked={!!values.find(value => value.value === item.value)}
+											aria-label="dropdown item input"
 										/>
-										<label htmlFor={item.name}>{item.name}</label>
+										<label htmlFor={item.name} >{item.name}</label>
 									</span>
 								</li>
 							)
