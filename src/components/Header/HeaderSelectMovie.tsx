@@ -1,6 +1,5 @@
 import React from 'react'
 import { IMovie } from '../../types'
-import { useAppContext } from '../context/app'
 import MovieDescription from '../Movie/MovieDescription'
 
 export interface IHeaderSelectMovieProps {
@@ -9,8 +8,6 @@ export interface IHeaderSelectMovieProps {
 }
 
 export default function HeaderSelectMovie({ selectedMovie, unselectMovie }: IHeaderSelectMovieProps) {
-	const { setAppState } = useAppContext()
-
 	return (
 		<>
 			<div className='header__top'>

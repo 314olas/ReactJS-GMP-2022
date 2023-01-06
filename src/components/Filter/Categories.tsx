@@ -3,7 +3,7 @@ import { IDropdownData } from '../../types'
 
 export interface ICategoriesProps {
 	list: IDropdownData[]
-	activeCategory: IDropdownData,
+	activeCategory: string,
 	selectCategory: (category: IDropdownData) => void
 }
 
@@ -19,7 +19,11 @@ export default function Categories({ list, activeCategory, selectCategory }: ICa
 			{list.map((category) => {
 				return (
 					<li
-						className={['item', category.value === activeCategory.value ? 'active' : ''].join(
+						className={[
+							'item',
+							category.value === activeCategory ? 'active' : '',
+							category.value === 'all' && !activeCategory ? 'active' : ''
+						].join(
 							' '
 						)}
 						key={category.name}

@@ -7,19 +7,20 @@ import { IMovie, IDropdownData, MovieActionEnum } from '../../types'
 import DropDown from '../Dropdown'
 import Loading from '../Loading'
 import MovieImage from './MovieImage'
+import { useQueryParams } from '../../hooks/queryParams';
 
 const MovieFormModal = lazy(() => import('./MovieFormModal'))
 const Modal = lazy(() => import('../Modal'))
 
 export interface IMovieProps {
 	movie: IMovie
-	moviesActions: IDropdownData[],
-	selectMovieHandler: (movie: IMovie) => void
+	moviesActions: IDropdownData[]
 }
 
-export default function Movie({ movie, moviesActions = [], selectMovieHandler }: IMovieProps) {
+export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
 	const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false)
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false)
+	const { setQueryParam } = useQueryParams()
 
 	const [deleteMovie, { isSuccess }] = useDeleteMovieMutation()
 
@@ -27,7 +28,7 @@ export default function Movie({ movie, moviesActions = [], selectMovieHandler }:
 
 	const clickHandler = (e: React.MouseEvent<HTMLButtonElement>, movie: IMovie) => {
 		e.preventDefault();
-		selectMovieHandler(movie)
+		setQueryParam('movieID', movie.id.toString())
 	}
 
 	const openModalHandler =
