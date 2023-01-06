@@ -1,0 +1,443 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App page check App snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="header"
+  >
+    <img
+      alt="header background"
+      class="header__background"
+      src="test-file-stub"
+    />
+    <div
+      class="position-relative"
+    >
+      <div
+        class="header__top"
+      >
+        <a
+          class="header__logo"
+          href="/"
+        >
+          <h1
+            class="logo-text"
+          >
+            <strong>
+              netflix
+            </strong>
+            roulette
+          </h1>
+        </a>
+        <button
+          class="button header__add-btn"
+          type="button"
+        >
+          + Add movie
+        </button>
+      </div>
+      <form
+        class="header__search"
+      >
+        <h2
+          class="title"
+        >
+          FIND YOUR MOViE
+        </h2>
+        <div
+          class="header__search-field"
+        >
+          <input
+            class="input"
+            placeholder="What do you want to watch?"
+            type="text"
+          />
+          <button
+            class="button button-warning"
+            data-testid="searchBtn"
+          >
+            search
+          </button>
+        </div>
+      </form>
+    </div>
+  </header>
+  <main
+    class="content"
+  >
+    <section
+      class="filter"
+    >
+      <ul
+        class="filter__category-list"
+      >
+        <li
+          class="item  active"
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            all
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Documentary
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Comedy
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Crime
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Horror
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Romance
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Drama
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Action
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Science Fiction
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Adventure
+          </a>
+        </li>
+        <li
+          class="item  "
+        >
+          <a
+            class="link"
+            href="/"
+          >
+            Fantasy
+          </a>
+        </li>
+      </ul>
+      <div
+        class="filter__sort"
+      >
+        <span
+          class="filter__sort-text"
+        >
+          Sort by
+        </span>
+        <div
+          class="outside"
+        >
+          <div
+            class="dropdown  "
+          >
+            <div
+              class="dropdown__content"
+            >
+              <button
+                aria-expanded="false"
+                class="button dropdown__btn"
+                id="dropdownMenuButton1"
+                type="button"
+              >
+                select options
+                <svg
+                  class="dropdown__arrow"
+                  fill="none"
+                  height="7"
+                  viewBox="0 0 10 7"
+                  width="10"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M1.17339 0C0.319169 0 -0.141788 1.00184 0.413939 1.65057L4.23746 6.11398C4.63642 6.57971 5.35674 6.57992 5.75597 6.11442L9.58401 1.65101C10.1403 1.0024 9.67943 0 8.82494 0H1.17339Z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              aria-labelledby="dropdownMenuButton1"
+              class="dropdown__menu "
+            >
+              <li>
+                <button
+                  class="dropdown__menu-button"
+                  type="button"
+                >
+                  realease date
+                </button>
+              </li>
+              <li>
+                <button
+                  class="dropdown__menu-button"
+                  type="button"
+                >
+                  budget
+                </button>
+              </li>
+              <li>
+                <button
+                  class="dropdown__menu-button"
+                  type="button"
+                >
+                  vote count
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="container container--3 movie-card-container"
+    >
+      <article
+        class="movie-card"
+      >
+        <div
+          class="image-wrapper"
+        >
+          <button
+            type="button"
+          >
+            <img
+              alt="TITLE"
+              src="test-file-stub"
+            />
+          </button>
+          <div
+            class="outside"
+          >
+            <div
+              class="dropdown  movie-card__more"
+            >
+              <div
+                class="dropdown__content"
+              >
+                <button
+                  aria-expanded="false"
+                  class="button dropdown__btn"
+                  id="dropdownMenuButton1"
+                  type="button"
+                >
+                  <span>
+                    ...
+                  </span>
+                </button>
+              </div>
+              <ul
+                aria-labelledby="dropdownMenuButton1"
+                class="dropdown__menu right"
+              >
+                <li>
+                  <button
+                    class="dropdown__menu-button"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown__menu-button"
+                    type="button"
+                  >
+                    Delete
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <footer
+          class="movie-card__footer"
+        >
+          <div
+            class="text-content"
+          >
+            <h4
+              class="movie-name"
+            >
+              TITLE
+            </h4>
+            <span
+              class="movie-category"
+            />
+          </div>
+          <span
+            class="year-label"
+          >
+            06-29-2006
+          </span>
+        </footer>
+      </article>
+      <article
+        class="movie-card"
+      >
+        <div
+          class="image-wrapper"
+        >
+          <button
+            type="button"
+          >
+            <img
+              alt="Movie 2"
+              src="test-file-stub"
+            />
+          </button>
+          <div
+            class="outside"
+          >
+            <div
+              class="dropdown  movie-card__more"
+            >
+              <div
+                class="dropdown__content"
+              >
+                <button
+                  aria-expanded="false"
+                  class="button dropdown__btn"
+                  id="dropdownMenuButton1"
+                  type="button"
+                >
+                  <span>
+                    ...
+                  </span>
+                </button>
+              </div>
+              <ul
+                aria-labelledby="dropdownMenuButton1"
+                class="dropdown__menu right"
+              >
+                <li>
+                  <button
+                    class="dropdown__menu-button"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown__menu-button"
+                    type="button"
+                  >
+                    Delete
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <footer
+          class="movie-card__footer"
+        >
+          <div
+            class="text-content"
+          >
+            <h4
+              class="movie-name"
+            >
+              Movie 2
+            </h4>
+            <span
+              class="movie-category"
+            >
+              Drama Biography Music
+            </span>
+          </div>
+          <span
+            class="year-label"
+          >
+            06-29-2006
+          </span>
+        </footer>
+      </article>
+    </section>
+  </main>
+  <footer
+    class="footer"
+  >
+    <a
+      class="header__logo"
+      href="/"
+    >
+      <span
+        class="logo-text"
+      >
+        <strong>
+          netflix
+        </strong>
+        roulette
+      </span>
+    </a>
+  </footer>
+</DocumentFragment>
+`;

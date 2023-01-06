@@ -17,7 +17,7 @@ export default function App(props: IAppProps) {
 		<Provider store={store}>
 			<Header />
 			<main className='content'>
-			<Filter />
+				<Filter />
 				<ErrorBoundary>
 					<MovieList />
 				</ErrorBoundary>

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 export interface IPortalWrapperProps {
@@ -7,6 +7,12 @@ export interface IPortalWrapperProps {
 }
 
 function PortalWrapper({ children, wrapperId }: IPortalWrapperProps) {
-	return createPortal(children, document.getElementById(wrapperId))
+	const [mount, setMount] = useState(false);
+
+	useEffect(() => {
+		setMount(true);
+	}, [wrapperId]);
+
+	return mount ? createPortal(children, document.getElementById(wrapperId)) : null
 }
 export default PortalWrapper

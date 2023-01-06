@@ -1,6 +1,5 @@
 import React, { useState, lazy, Suspense } from 'react'
 import { useAppDispatch } from '../../hooks/redux'
-import { useDeleteMovieMutation } from '../../store/services/movie'
 import { updateFormField } from '../../store/slices/movieSlice'
 import { IMovie, IDropdownData, MovieActionEnum } from '../../types'
 
@@ -8,6 +7,7 @@ import DropDown from '../Dropdown'
 import Loading from '../Loading'
 import MovieImage from './MovieImage'
 import { useQueryParams } from '../../hooks/queryParams';
+import { useDeleteMovie } from '../../hooks/useDeleteMovie'
 
 const MovieFormModal = lazy(() => import('./MovieFormModal'))
 const Modal = lazy(() => import('../Modal'))
@@ -22,7 +22,7 @@ export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false)
 	const { setQueryParam } = useQueryParams()
 
-	const [deleteMovie, { isSuccess }] = useDeleteMovieMutation()
+	const { deleteMovie, isSuccess } = useDeleteMovie()
 
 	const dispatch = useAppDispatch()
 
