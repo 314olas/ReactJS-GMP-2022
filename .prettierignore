@@ -1,7 +1,0 @@
-node_modules
-
-# Ignore artifacts:
-build
-coverage
-assets
-src/**/*.scss

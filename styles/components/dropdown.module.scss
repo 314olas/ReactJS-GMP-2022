@@ -1,0 +1,87 @@
+@import '../settings/variables';
+@import '../settings/mixins';
+
+.dropdown {
+    position: relative;
+    width: fit-content;
+
+    &.open {
+        z-index: 10;
+
+        .arrow {
+            transform: rotate(180deg);
+        }
+
+        ul {
+            max-height: fit-content;
+            border-color: $gray;
+            background-color: $black;
+        }
+    }
+}
+
+.content {
+    width: 100%;
+}
+
+.btnButton {
+    @include text-m;
+
+    background-color: transparent;
+    color: $white;
+    padding-right: 0;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+
+    &.right {
+        right: 0;
+        left: auto;
+    }
+}
+
+.menuButton {
+    @include text-l;
+
+    background-color: transparent;
+    color: $white;
+    display: block;
+    padding: 9px 30px 9px 23px;
+    width: 100%;
+    border: 0;
+
+    &:hover {
+        background-color: $red;
+    }
+}
+
+
+.li {
+    display: block;
+
+    &:first-child {
+        padding-top: 12px;
+    }
+
+    &:last-child {
+        padding-bottom: 6px;
+    }
+}
+
+.arrow {
+    fill: $red;
+    display: inline-block;
+    margin-left: 13px;
+}
