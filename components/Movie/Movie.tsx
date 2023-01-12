@@ -28,7 +28,7 @@ export default function Movie({ movie, moviesActions = [] }: IMovieProps) {
 
 	const clickHandler = (e: React.MouseEvent<HTMLButtonElement>, movie: IMovie) => {
 		e.preventDefault();
-		setQueryParam('movieID', movie.id.toString())
+		setQueryParam('movieID', movie.id ? movie.id.toString() : '')
 	}
 
 	const openModalHandler =

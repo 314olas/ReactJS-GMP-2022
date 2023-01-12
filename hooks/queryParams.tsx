@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import type { UrlObject } from 'url'
 import { IObjectKey } from '../types'
-import { ParsedUrlQuery } from 'querystring'
 
 interface IRouterObj {
 	pathName?: UrlObject | string,
